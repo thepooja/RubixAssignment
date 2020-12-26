@@ -119,19 +119,20 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
 
 
         txtModelName.setText(entity.getModel_name());
-        txtDate.setText(entity.getModel_name());
+        txtDate.setText(entity.getModel_date());
         txtModelQuantity.setText(String.valueOf(entity.getModel_quantity()));
         ratingBar.setRating(entity.getModel_rating());
-
-        Bitmap b = getConvertedImage(entity.getModel_image());
+        imgLogo.setImageResource(entity.getModel_image());
+       // Bitmap b = getConvertedImage(entity.getModel_image());
 
 
        // itemBinding.imgLogo.setBackgroundDrawable(new BitmapDrawable(_context.getResources(),getConvertedImage(entity.getModel_image())));
 
         //imgLogo.setBackground(new BitmapDrawable(b));
-        //imgLogo.setImageBitmap(b);
+       // imgLogo.setImageBitmap(entity.);
 
-    //    imgLogo.
+
+       // imgLogo.setImageResource(R.drawable.ic_android_logo);
 
         return convertView;
     }

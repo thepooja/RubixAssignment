@@ -34,7 +34,7 @@ public class MobileEntity {
 
     @NonNull
     @ColumnInfo(name = "model_image")
-    private byte[] model_image;
+    private int model_image;
 
     @NonNull
     @ColumnInfo(name = "model_quantity")
@@ -79,11 +79,11 @@ public class MobileEntity {
     }
 
     @NonNull
-    public byte[] getModel_image() {
+    public int getModel_image() {
         return model_image;
     }
 
-    public void setModel_image(@NonNull byte[] model_image) {
+    public void setModel_image(@NonNull int model_image) {
         this.model_image = model_image;
     }
 
@@ -103,7 +103,7 @@ public class MobileEntity {
         this.model_rating = model_rating;
     }
 
-    public MobileEntity(@NonNull String model_name, @NonNull String model_date, @NonNull byte[] model_image, float model_quantity, float model_rating) {
+    public MobileEntity(@NonNull String model_name, @NonNull String model_date, @NonNull int model_image, float model_quantity, float model_rating) {
         this.model_name = model_name;
         this.model_date = model_date;
         this.model_image = model_image;

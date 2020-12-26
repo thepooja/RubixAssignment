@@ -157,7 +157,9 @@ public class MainActivity extends AppCompatActivity {
     private List<MobileEntity> getAppleBrandList() {
         List<MobileEntity> mobileEntities = new ArrayList<>();
 
-        byte[] appleLogo = getByteFromBitmap(R.drawable.ic_apple_logo);
+      //  byte[] appleLogo = getByteFromBitmap(R.drawable.ic_apple_logo);
+
+        int appleLogo = R.drawable.ic_apple_logo;
 
         mobileEntities.add(new MobileEntity("iphone 6 ", "2014-03-08", appleLogo, 15.0f, 3.5f));
         mobileEntities.add(new MobileEntity("Iphone 6 s", "2014-08-15", appleLogo, 20.0f, 4.5f));
@@ -173,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
     private List<MobileEntity> getAndroidMobileList() {
         List<MobileEntity> mobileEntities = new ArrayList<>();
 
-        byte[] androidLogo = getByteFromBitmap(R.drawable.ic_android_logo);
+        int androidLogo = R.drawable.ic_android_logo;
 
         mobileEntities.add(new MobileEntity("Samsung S7 ", "2014-02-08", androidLogo, 45.0f, 4.5f));
         mobileEntities.add(new MobileEntity("Samsung S8", "2014-04-25", androidLogo, 98.0f, 3.5f));
