@@ -24,13 +24,14 @@
 
                 <ImageView
                     android:id="@+id/imgLogo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_margin="10dp"
-                    android:src="@drawable/circle_right_arrow" />
+
+                     />
 
                 <TextView
                     android:id="@+id/txtModelName"
@@ -38,7 +39,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@id/imgLogo"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="samnsjahjfd h"
+                    android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -52,7 +53,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:text="20289898"
+                    android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
                     android:gravity="end"
                     android:textSize="18sp"
                     android:layout_margin="5dp" />
@@ -63,19 +64,22 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@id/imgLogo"
                     app:layout_constraintTop_toBottomOf="@id/txtModelName"
-                    android:text="samnsjahjfd h"
+                    android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
                     android:textSize="18sp"
                     android:layout_margin="5dp"
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <RatingBar
                     android:id="@+id/modelRating"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@id/imgLogo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtModelQuantity"
                     android:orientation="horizontal"
+                    android:stepSize="0.1"
+                    android:isIndicator="true"
+                    android:numStars="5"
                     android:layout_margin="5dp"
                     app:layout_constraintBottom_toBottomOf="parent" />
 

@@ -99,12 +99,15 @@ public class BrandRepository {
 
 
 
-    public List<MobileEntity> getMobileList(long brand_id)
+    public List<MobileEntity> getMobileList(long brand_id,String sortType)
     {
         List<MobileEntity> mobileEntities =null;
 
         try {
-            mobileEntities = new getMobiles(brandDao,brand_id).execute().get();
+
+                mobileEntities = new getMobiles(brandDao,brand_id,sortType).execute().get();
+
+
         }catch (Exception e)
         {
 
@@ -117,17 +120,37 @@ public class BrandRepository {
     {
         private BrandDao brandDao;
         private long brand_id;
+        private String sortType;
 
-        public getMobiles(BrandDao brandDao,long brand_id) {
+        public getMobiles(BrandDao brandDao, long brand_id, String sortType) {
             this.brandDao = brandDao;
             this.brand_id = brand_id;
+            this.sortType = sortType;
         }
-
 
         @Override
         protected List<MobileEntity> doInBackground(Void... voids) {
-            return brandDao.getMobileList(brand_id);
+
+            if (sortType.isEmpty())
+            {
+                return brandDao.getMobileList(brand_id);
+            }
+            else if (sortType.equals("date"))
+            {
+                return brandDao.getMobileListSortByDate(brand_id);
+            }
+            else if (sortType.equals("qty"))
+            {
+                return brandDao.getMobileListSortByQuantity(brand_id);
+            }
+            else if (sortType.equals("rating"))
+            {
+                return brandDao.getMobileListSortByRating(brand_id);
+            }
+
+            return null;
         }
+
     }
 
 }

@@ -26,6 +26,17 @@ public interface BrandDao {
     List<MobileEntity> getMobileList(long brand_id);
 
 
+    @Query("Select * from tbl_Mobile where brand_id_fk=:brand_id order by model_date")
+    List<MobileEntity> getMobileListSortByDate(long brand_id);
+
+
+    @Query("Select * from tbl_Mobile where brand_id_fk=:brand_id order by model_quantity")
+    List<MobileEntity> getMobileListSortByQuantity(long brand_id);
+
+    @Query("Select * from tbl_Mobile where brand_id_fk=:brand_id order by model_rating")
+    List<MobileEntity> getMobileListSortByRating(long brand_id);
+
+
 
 
 }

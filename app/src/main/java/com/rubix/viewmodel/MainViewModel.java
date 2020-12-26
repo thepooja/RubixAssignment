@@ -37,10 +37,12 @@ public class MainViewModel extends AndroidViewModel {
         return brandEntityLiveData;
     }
 
-    public List<MobileEntity> getMobilesList(long brand_id)
+    public List<MobileEntity> getMobilesList(long brand_id,String sortType)
     {
-        return repository.getMobileList(brand_id);
+        return repository.getMobileList(brand_id,sortType);
     }
+
+
 
 
 }

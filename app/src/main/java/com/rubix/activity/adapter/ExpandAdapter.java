@@ -1,10 +1,16 @@
 package com.rubix.activity.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.databinding.DataBindingUtil;
@@ -24,8 +30,6 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     private List<BrandEntity> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<BrandEntity, List<MobileEntity>> _listDataChild;
-   private  LayoutListItemBinding itemBinding;
-   private LayoutListHeaderBinding headerBinding;
 
     public ExpandAdapter(Context _context, List<BrandEntity> _listDataHeader, HashMap<BrandEntity, List<MobileEntity>> _listDataChild) {
         this._context = _context;
@@ -74,17 +78,20 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            headerBinding = DataBindingUtil.inflate(inflater, R.layout.layout_list_header, parent, false);
 
-            convertView = headerBinding.getRoot();
+            LayoutInflater infalInflater = (LayoutInflater) this._context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = infalInflater.inflate(R.layout.layout_list_header, null);
 
         }
 
+
+
         BrandEntity brandEntity = (BrandEntity)getGroup(groupPosition);
 
-        headerBinding.txtHeader.setText(brandEntity.getBrandName());
+        TextView txtHeader = convertView.findViewById(R.id.txtHeader);
 
+        txtHeader.setText(brandEntity.getBrandName());
 
         return convertView;
 
@@ -95,29 +102,51 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
 
 
         if (convertView == null) {
-           /* LayoutInflater infalInflater = (LayoutInflater) this._context
+            LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.layout_list_item, null);*/
+            convertView = infalInflater.inflate(R.layout.layout_list_item, null);
 
 
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-           itemBinding = DataBindingUtil.inflate(inflater, R.layout.layout_list_item, parent, false);
-
-           convertView = itemBinding.getRoot();
         }
 
 
-       MobileEntity entity = (MobileEntity)getChild(groupPosition,childPosition);
-        //itemBinding.imgLogo.setImageResource(entity.getModel_image().);
-        itemBinding.txtModelName.setText(entity.getModel_name());
-        itemBinding.txtDate.setText(entity.getModel_date());
-        itemBinding.modelRating.setRating(entity.getModel_rating());
-        itemBinding.txtModelQuantity.setText(String.valueOf(entity.getModel_quantity()));
+        MobileEntity entity = (MobileEntity)getChild(groupPosition,childPosition);
+        TextView txtModelName = (TextView) convertView.findViewById(R.id.txtModelName);
+        TextView txtDate = (TextView) convertView.findViewById(R.id.txtDate);
+        TextView txtModelQuantity = (TextView) convertView.findViewById(R.id.txtModelQuantity);
+        RatingBar ratingBar = convertView.findViewById(R.id.modelRating);
+        ImageView imgLogo = convertView.findViewById(R.id.imgLogo);
+
+
+        txtModelName.setText(entity.getModel_name());
+        txtDate.setText(entity.getModel_name());
+        txtModelQuantity.setText(String.valueOf(entity.getModel_quantity()));
+        ratingBar.setRating(entity.getModel_rating());
+
+        Bitmap b = getConvertedImage(entity.getModel_image());
+
+
+       // itemBinding.imgLogo.setBackgroundDrawable(new BitmapDrawable(_context.getResources(),getConvertedImage(entity.getModel_image())));
+
+        //imgLogo.setBackground(new BitmapDrawable(b));
+        //imgLogo.setImageBitmap(b);
+
+    //    imgLogo.
+
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return true;
+        return false;
+    }
+
+    private Bitmap getConvertedImage(byte[] image)
+    {
+        // let this be your byte array
+        Bitmap bitmap = BitmapFactory.decodeByteArray(image , 0, image .length);
+
+
+        return bitmap;
     }
 }
